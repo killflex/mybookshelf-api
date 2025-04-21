@@ -86,7 +86,7 @@ x-api-key: your_api_key
 
 ### 📚 Swagger Documentation
 
-Dokumentasi API tersedia melalui Swagger UI di:\*\*\*\*
+Dokumentasi API tersedia melalui Swagger UI di:
 
 - `GET /api-docs`
 
