@@ -34,9 +34,14 @@ mybookshelf-api/
 ├── routes/
 │   ├── authRoutes.js
 │   └── bookRoutes.js
+├── utils/
+│   ├── swagger-output.json
+│   └── swagger.js
 ├── .env
+├── .env.example
 ├── server.js
 ├── package.json
+├── vercel.json
 └── README.md
 ```
 
@@ -78,6 +83,12 @@ x-api-key: your_api_key
 ```
 
 ## 📄 Dokumentasi API
+
+### 📚 Swagger Documentation
+
+Dokumentasi API tersedia melalui Swagger UI di:\*\*\*\*
+
+- `GET /api-docs`
 
 ### 🧑‍💼 Auth
 
