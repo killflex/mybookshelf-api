@@ -150,7 +150,7 @@ Semua endpoint buku memerlukan header `x-api-key`.
     }
     ```
 
-- `PUT /api/books/:id`
+- `PATCH /api/books/:id`
 
   - **Body:**
 
