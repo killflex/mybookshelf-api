@@ -1,15 +1,15 @@
 # 📚 MyBookshelf API
 
-MyBookshelf API adalah RESTful API yang memungkinkan pengguna untuk mengelola koleksi buku pribadi mereka. API ini dilengkapi dengan sistem autentikasi berbasis API Key dan integrasi dengan Google Books API untuk pencarian buku.
+MyBookshelf API is a RESTful API that enables users to manage their personal book collections. This API comes with API Key-based authentication system and integration with Google Books API for book searching.
 
-## 🚀 Fitur
+## 🚀 Features
 
-- Registrasi dan login pengguna dengan API Key unik.
-- CRUD (Create, Read, Update, Delete) untuk koleksi buku pribadi.
-- Pencarian buku melalui Google Books API.
-- Perlindungan endpoint menggunakan API Key.
+- User registration and login with unique API Key.
+- CRUD (Create, Read, Update, Delete) for personal book collection.
+- Book search through Google Books API.
+- Endpoint protection using API Key.
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 
 - Node.js
 - Express.js
@@ -19,10 +19,12 @@ MyBookshelf API adalah RESTful API yang memungkinkan pengguna untuk mengelola ko
 - Axios
 - CORS
 
-## 📁 Struktur Proyek
+## 📁 Project Structure
 
 ```bash
 mybookshelf-api/
+├── config/
+│   ├── db.js
 ├── controllers/
 │   ├── authController.js
 │   └── bookController.js
@@ -39,56 +41,61 @@ mybookshelf-api/
 │   └── swagger.js
 ├── .env
 ├── .env.example
-├── server.js
+├── .gitignore
+├── LICENSE
+├── package-lock.json
 ├── package.json
-├── vercel.json
 └── README.md
+├── server.js
+├── vercel.json
 ```
 
-## ⚙️ Instalasi
+## ⚙️ Installation
 
-1. **Klon repositori ini**
+1. **Clone this repository**
 
    ```bash
    git clone https://github.com/killflex/mybookshelf-api.git
    cd mybookshelf-api
    ```
 
-2. **Instal dependensi**
+2. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-3. **Buat file `.env`**
+3. **Create `.env` file**
 
    ```env
    MONGODB_URI=your_mongodb_connection_string
    ```
 
-4. **Jalankan server**
+4. **Run the server**
 
    ```bash
    npm start
    ```
 
-   Server akan berjalan di `http://localhost:5000`
+   Server will run on `http://localhost:5000`
 
-## 🔐 Autentikasi
+## 🔐 Authentication
 
-Setelah registrasi atau login, pengguna akan menerima `apiKey` yang harus disertakan dalam header setiap permintaan ke endpoint yang dilindungi:
+After registration or login, users will receive an `apiKey` that must be included in the header for every request to protected endpoints:
 
 ```http
 x-api-key: your_api_key
 ```
 
-## 📄 Dokumentasi API
+## 📄 API Documentation
 
 ### 📚 Swagger Documentation
 
-Dokumentasi API tersedia melalui Swagger UI di:
+API documentation is available through Swagger UI at:
 
 - `GET /api-docs`
+
+![Swagger UI MyBookShelf API](https://res.cloudinary.com/dn2tic45s/image/upload/v1745310507/SwaggerUI_mybookshelf-api-ferry_aulm8x.png)
 
 ### 🧑‍💼 Auth
 
@@ -132,11 +139,11 @@ Dokumentasi API tersedia melalui Swagger UI di:
 
 ### 📚 Buku
 
-Semua endpoint buku memerlukan header `x-api-key`.
+All book endpoints require `x-api-key` header.
 
 - `GET /api/books`
 
-  - **Deskripsi:** Mengambil semua buku milik pengguna.
+  - **Description:** Get all books belonging to the user.
 
 - `POST /api/books`
 
@@ -164,35 +171,35 @@ Semua endpoint buku memerlukan header `x-api-key`.
 
 - `DELETE /api/books/:id`
 
-  - **Deskripsi:** Menghapus buku berdasarkan ID.
+  - **Description:** Delete book by ID.
 
 - `GET /api/books/search-books?q=keyword`
 
-  - **Deskripsi:** Mencari buku menggunakan Google Books API.
+  - **Description:** Search books using Google Books API.
 
-## 🧪 Pengujian dengan Postman
+## 🧪 Testing with Postman
 
-Gunakan Postman untuk menguji endpoint:
+Use Postman to test the endpoints:
 
-1. **Registrasi/Login:**
+1. **Registration/Login:**
 
-   - Kirim permintaan `POST` ke `/api/auth/register` atau `/api/auth/login` dengan body JSON yang sesuai.
+   - Send a `POST` request to `/api/auth/register` or `/api/auth/login` with appropriate JSON body.
 
-   - Simpan `apiKey` dari respons.
+   - Save the `apiKey` from the response.
 
-2. **Akses Endpoint Buku:**
+2. **Access Book Endpoints:**
 
-   - Tambahkan header `x-api-key` dengan nilai `apiKey` yang diperoleh.
+   - Add `x-api-key` header with the obtained `apiKey` value.
 
-   - Kirim permintaan ke endpoint buku sesuai kebutuhan.
+   - Send requests to book endpoints as needed.
 
 ## 🌐 Deployment
 
-Proyek ini dapat dideploy menggunakan platform seperti Vercel atau Heroku. Pastikan variabel lingkungan (`MONGODB_URI`) telah dikonfigurasi dengan benar di platform deployment yang digunakan.
+This project can be deployed using platforms like Vercel or Heroku. Make sure environment variables ( `MONGODB_URI` ) are properly configured in the deployment platform.
 
-## 📌 Catatan
+## 📌 Notes
 
-- Pastikan untuk menjaga keamanan `apiKey` Anda.
+- Make sure to keep your `apiKey` secure.
 
 ## 👨‍💻 Contributors
 
