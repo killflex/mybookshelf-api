@@ -12,7 +12,17 @@ const CSS_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://mybookshelf-api-ferry.vercel.app",
+      "http://localhost:5000",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "x-api-key"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use(
