@@ -5,7 +5,7 @@
     "description": "API for managing your personal book collection",
     "version": "1.0.0"
   },
-  "host": ["mybookshelf-api-ferry.vercel.app", "localhost:5000"],
+  "host": ["mybookshelf-api-ferry.vercel.app"],
   "basePath": "/api",
   "schemes": ["http", "https"],
   "securityDefinitions": {

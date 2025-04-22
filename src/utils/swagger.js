@@ -4,7 +4,7 @@ const doc = {
     title: "MyBookshelf API",
     description: "API for managing your personal book collection",
   },
-  host: ["mybookshelf-api-ferry.vercel.app", "localhost:5000"],
+  host: ["mybookshelf-api-ferry.vercel.app"],
   schemes: ["http", "https"],
   basePath: "/api",
   tags: [
