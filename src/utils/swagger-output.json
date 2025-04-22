@@ -5,9 +5,9 @@
     "description": "API for managing your personal book collection",
     "version": "1.0.0"
   },
-  "host": "https://mybookshelf-api-ferry.vercel.app",
-  "basePath": "/",
-  "schemes": ["https"],
+  "host": ["mybookshelf-api-ferry.vercel.app", "localhost:5000"],
+  "basePath": "/api",
+  "schemes": ["http", "https"],
   "securityDefinitions": {
     "apiKeyAuth": {
       "type": "apiKey",
@@ -17,7 +17,7 @@
     }
   },
   "paths": {
-    "/register": {
+    "/auth/register": {
       "post": {
         "description": "",
         "parameters": [
@@ -50,7 +50,7 @@
         }
       }
     },
-    "/login": {
+    "/auth/login": {
       "post": {
         "description": "",
         "parameters": [
@@ -83,7 +83,7 @@
         }
       }
     },
-    "/": {
+    "/books/": {
       "get": {
         "description": "",
         "responses": {
@@ -136,7 +136,7 @@
         }
       }
     },
-    "/{id}": {
+    "/books/{id}": {
       "patch": {
         "description": "",
         "parameters": [
@@ -188,7 +188,7 @@
         }
       }
     },
-    "/search/{q}": {
+    "/books/search/{q}": {
       "get": {
         "description": "",
         "parameters": [
