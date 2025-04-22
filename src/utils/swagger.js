@@ -2,10 +2,12 @@ const swaggerAutogen = require("swagger-autogen")();
 const doc = {
   info: {
     title: "MyBookshelf API",
-    description: "API for managing your personal book collection",
+    description:
+      "API for managing your personal book collection with API Key authentication and Google Books API integration",
+    version: "1.0.0",
   },
   host: ["mybookshelf-api-ferry.vercel.app"],
-  schemes: ["http", "https"],
+  schemes: ["https"],
   basePath: "/api",
   tags: [
     {
@@ -25,6 +27,11 @@ const doc = {
       description: "API Key authentication",
     },
   },
+  security: [
+    {
+      apiKeyAuth: [],
+    },
+  ],
 };
 
 const outputFile = "./swagger-output.json";

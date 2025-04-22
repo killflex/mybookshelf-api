@@ -2,12 +2,22 @@
   "swagger": "2.0",
   "info": {
     "title": "MyBookshelf API",
-    "description": "API for managing your personal book collection",
+    "description": "API for managing your personal book collection with API Key authentication and Google Books API integration",
     "version": "1.0.0"
   },
   "host": ["mybookshelf-api-ferry.vercel.app"],
   "basePath": "/api",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication endpoints"
+    },
+    {
+      "name": "Books",
+      "description": "Book management endpoints"
+    }
+  ],
   "securityDefinitions": {
     "apiKeyAuth": {
       "type": "apiKey",
@@ -19,7 +29,8 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "description": "",
+        "tags": ["Auth"],
+        "description": "Register a new user and get API key",
         "parameters": [
           {
             "name": "body",
@@ -28,10 +39,12 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "johndoe"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "secretpass123"
                 }
               }
             }
@@ -39,20 +52,21 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Successfully created new user"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Invalid data provided"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       }
     },
     "/auth/login": {
       "post": {
-        "description": "",
+        "tags": ["Auth"],
+        "description": "Login with existing user credentials to get API key",
         "parameters": [
           {
             "name": "body",
@@ -61,10 +75,12 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "johndoe"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "secretpass123"
                 }
               }
             }
@@ -72,34 +88,46 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Login successful"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid credentials"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       }
     },
     "/books/": {
       "get": {
-        "description": "",
+        "tags": ["Books"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "Get all books belonging to authenticated user",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successfully retrieved books list"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid API key"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": ["Books"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "Add a new book to user's collection",
         "parameters": [
           {
             "name": "body",
@@ -108,13 +136,16 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "The Great Gatsby"
                 },
                 "author": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "F. Scott Fitzgerald"
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "A novel about the American Dream"
                 }
               }
             }
@@ -122,95 +153,116 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Successfully added book"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Invalid book data"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid API key"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       }
     },
     "/books/{id}": {
       "patch": {
-        "description": "",
+        "tags": ["Books"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "Update book information by ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the book to update"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successfully updated book"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid API key"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Book not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": ["Books"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "Delete book by ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID of the book to delete"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successfully deleted book"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid API key"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Book not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       }
     },
     "/books/search/{q}": {
       "get": {
-        "description": "",
+        "tags": ["Books"],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "Search books using Google Books API",
         "parameters": [
           {
             "name": "q",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Search query for books"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successfully retrieved search results"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Invalid API key"
           },
           "404": {
-            "description": "Not Found"
+            "description": "No results found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Server error occurred"
           }
         }
       }
