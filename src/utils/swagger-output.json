@@ -7,7 +7,7 @@
   },
   "host": "https://mybookshelf-api-ferry.vercel.app",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": ["http"],
   "securityDefinitions": {
     "apiKeyAuth": {
       "type": "apiKey",
